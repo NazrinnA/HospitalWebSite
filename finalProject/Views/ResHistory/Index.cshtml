@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+@model ShowDto
+<div class="container">
+
+     <div class="text-center mx-auto mb-5 mt-4" style="max-width: 500px;">
+            <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Rezervasiya keçmişi</h5>
+            <h1 class="display-4 mb-4">Sağlamlığınız öncəliyimizdir!</h1>
+        </div>
+    <div class=" grid-margin stretch-card">
+        <div class="card text-center">
+            <div class="card-body">
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Həkim adı</th>
+                                <th>Sahəsi</th>
+                                <th colspan="6" style="text-align:center">Rezervasiya</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null)
+                            {
+                               @for (int i = 0; i < Model.ResGet.Count; i++)
+                                {
+                                    
+
+                                    <tr>
+                                        <td>@Model.ResGet[i].Doctor.Name</td>
+                                        <td>@Model.DoctorGet[i].Position.Name</td>
+                                        <td>@Model.ResGet[i].date</td>
+                                        @if (Model.ResGet[i].date.Date == DateTime.Today)
+                                        {
+                                            @foreach (var rez in Model.DoctorGet[i].rezervs)
+                                            {
+                                                @if (rez.UserEmail == Model.ResGet[i].UserEmail)
+                                                {
+                                                    
+                                                <td>@rez.Time</td>
+                                            <td>
+                                                    <a style="text-decoration:none " asp-action="Rezerv" asp-controller="Reservation" asp-route-user="@rez.UserEmail" asp-route-id="@Model.DoctorGet[i].Id" asp-route-time="@rez.Time">
+                                                    <p style="color:@(rez.Busy ? "red" : "dimgray")">
+                                                        @(
+                                                            rez.Busy ? "Rezervasiya edilib" : "Rezervasiya edilməyib"
+                                                            )
+                                                    </p>
+                                                </a>
+                                            </td>
+                                                }
+                                        }
+                                            
+                                        }
+                                    </tr>
+                                }
+                            }
+                           
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

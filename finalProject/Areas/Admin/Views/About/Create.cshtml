@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewData["Title"] = "Create";
+}
+
+@model AboutPostDto
+<div class="row">
+    <div class="grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <form class="forms-sample" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly"></div>
+                    <div class="form-group">
+                        <label>Ad</label>
+                        <input type="text" class="form-control" asp-for="Title" placeholder="Başlıq">
+                        <span asp-validation-for="Title"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Açıqlama</label>
+                        <input type="text" class="form-control" asp-for="Description" placeholder="Açıqlama">
+                        <span asp-validation-for="Description"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Şəkil</label>
+                        <input class="form-control" asp-for="formFile" placeholder="Image">
+                        <span asp-validation-for="formFile"></span>
+                    </div>
+                    @for (int i = 0; i < 3; i++)
+                    {
+                        <div class="form-group">
+                            <label>Button</label>
+                            <input class="form-control" asp-for="@Model.Buttons[i].Icon" placeholder="Icon">
+                            <input class="form-control" asp-for="@Model.Buttons[i].Name" placeholder="Ad">
+                            <span asp-validation-for="Buttons"></span>
+                        </div>
+                    }
+                    <button type="submit" class="btn btn-primary me-2">Yadda saxla</button>
+                    <button class="btn btn-light" asp-action="index" asp-controller="about">Ləğv et</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

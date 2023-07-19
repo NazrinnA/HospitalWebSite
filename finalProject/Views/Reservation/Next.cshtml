@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "Next";
+}
+
+@model ReservationDto
+<div class="container-fluid bg-primary  py-5">
+    <div class="container py-5">
+        <div class="row gx-5">
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <div class="mb-4">
+                    <h5 class="d-inline-block text-white text-uppercase border-bottom border-5">Rezervasiya</h5>
+                    <h1 class="display-4">Rahatlığınız üçün əvvəlcədən rezervasiya edin.</h1>
+                </div>
+                <p class="text-white mb-5">Qəbul üçün ilkin ödəniş 40 azn dir.Rezervasiyalar bir gün öncədən edilə və yalnız bir gün öncədən ləğv edilə bilər.Əgər rezervasiya etmisinizsə zəhmət olmasa seçdiyiniz vaxtda xəstəxanamıza gələsiniz,təşəkkürlər.</p>
+                <a class="btn btn-dark rounded-pill py-3 px-5 me-3" asp-action="Index" asp-controller="Search">Axtarış</a>
+                <a class="btn btn-outline-dark rounded-pill py-3 px-5" asp-action="Index" asp-controller="About">Daha çox</a>
+            </div>
+            <div class="col-lg-6">
+                <div class="bg-white text-center rounded p-5">
+                    <h1 class="mb-4">Rezervasiya et</h1>
+                    <form method="post">
+                        <div class="row g-3" action="justify-content">
+                            <div class="col-12 col-sm-6">
+                                <div class="time" id="time" data-target-input="nearest">
+                                    <div class="nav-item dropdown">
+                                        <a href="#" class="nav-link dropdown-toggle text-black-50" data-bs-toggle="dropdown">Vaxt</a>
+                                        <div class="dropdown-menu m-0">
+
+                                            @foreach (var rez in Model.getDto.rezervs)
+                                            {
+                                                <a id="btn" asp-route-time="@rez.Time" asp-action="Rezerv" asp-controller="Team" asp-route-user="@Model.UserEmail" asp-route-id="@Model.getDto.Id" class="dropdown-item @(rez.Busy?"disabled":"")">@rez.Time</a>
+                                            }
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    var send_btn = document.getElementById("btn")
+    send_btn.addEventListener("click", function () {
+
+        Swal.fire({
+            title: "Rezervasiyanız qeydə alındı, gün ərzində emailinizə məlumat göndəriləcək:)",
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            }
+
+        });
+
+
+
+    })
+</script>

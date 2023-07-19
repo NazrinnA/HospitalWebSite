@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+@model HomeGetDto
+
+<div class="row">
+    <div class=" grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Başlıq</th>
+                                <th>Slogan</th>
+                                <th>Şəkil</th>
+                                <th>Ayarlar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null)
+                            {
+                                <tr>
+                                    <td>1</td>
+                                    <td>@Model.Title</td>
+                                    <td>@Model.Slogan</td>
+                                    <td><img src="~/assets/img/@Model.Image" /></td>
+                                    <td><a asp-action="Update" asp-controller="home" asp-route-id="@Model.Id"><i class="fa-solid fa-pen"></i></a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

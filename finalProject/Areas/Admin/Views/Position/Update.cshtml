@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewData["Title"] = "Update";
+}
+
+
+@model PositionUpdateDto
+<div class="row">
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <form class="forms-sample" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly"></div>
+                    <div class="form-group">
+                        <input hidden asp-for="@Model.getDto.Id" />
+                        <label>Ad</label>
+                        <input type="text" class="form-control" asp-for="@Model.postDto.Name" value="@Model.getDto.Name" placeholder="Ad">
+                        <span asp-validation-for="@Model.postDto.Name"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary me-2">Yadda saxla</button>
+                    <button class="btn btn-light" asp-action="index" asp-controller="Position">ləğv et</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

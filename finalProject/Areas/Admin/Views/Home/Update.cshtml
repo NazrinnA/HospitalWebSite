@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewData["Title"] = "Update";
+}
+@model HomeUpdateDto
+<div class="row">
+    <div class="col-md-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <form class="forms-sample" method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly"></div>
+                    <div class="form-group">
+                        <input hidden asp-for="@Model.getDto.Id" />
+                        <label>Ad</label>
+                        <input type="text" class="form-control" asp-for="@Model.postDto.Title" value="@Model.getDto.Title" placeholder="Ad">
+                        <span asp-validation-for="@Model.postDto.Title"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Sahə</label>
+                        <input type="text" class="form-control" asp-for="@Model.postDto.Slogan" value="@Model.getDto.Slogan" placeholder="Sahə">
+                        <span asp-validation-for="@Model.postDto.Slogan"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Şəkil</label>
+                        <input class="form-control" asp-for="@Model.postDto.formFile" placeholder="Şəkil">
+                        <span asp-validation-for="@Model.postDto.formFile"></span>
+                    </div>
+                    <button type="submit" class="btn btn-primary me-2">Yadda saxla</button>
+                    <button class="btn btn-light" asp-action="index" asp-controller="home">Ləğv et</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

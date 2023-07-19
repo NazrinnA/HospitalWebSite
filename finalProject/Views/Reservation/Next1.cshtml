@@ -1,0 +1,48 @@
+﻿@{
+    ViewData["Title"] = "Next1";
+}
+@model ReservationDto
+<div class="container-fluid bg-primary  py-5">
+    <div class="container py-5">
+        <div class="row gx-5">
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <div class="mb-4">
+                    <h5 class="d-inline-block text-white text-uppercase border-bottom border-5">Rezervasiya</h5>
+                    <h1 class="display-4">Rahatlığınız üçün əvvəlcədən rezervasiya edin.</h1>
+                </div>
+                <p class="text-white mb-5">Qəbul üçün ilkin ödəniş 40 azn dir.Rezervasiyalar bir gün öncədən edilə və yalnız bir gün öncədən ləğv edilə bilər.Əgər rezervasiya etmisinizsə zəhmət olmasa seçdiyiniz vaxtda xəstəxanamıza gələsiniz,təşəkkürlər.</p>
+                <a class="btn btn-dark rounded-pill py-3 px-5 me-3" asp-action="Index" asp-controller="Search">Axtarış</a>
+                <a class="btn btn-outline-dark rounded-pill py-3 px-5" asp-action="Index" asp-controller="About">Daha çox</a>
+            </div>
+            <div class="col-lg-6">
+                <div class="bg-white text-center rounded p-5">
+                    <h1 class="mb-4">Rezervasiya et</h1>
+
+                    <h5 style="color:red"><b>*Rezervasiyalar bir gün öncədən edilmədilir.</b></h5>
+
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly"></div>
+                        <div class="row g-3">
+                            <div class="col-12 ">
+                                <label for="cars">Həkim seçin:</label>
+                                <select class="form-control" asp-for="DoctorId">
+
+                                    @foreach (DoctorGetDto doc in ViewBag.Doctors)
+                                    {
+                                        <option value="@doc.Id">@doc.Name @doc.Surname</option>
+
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" asp-action="next2" asp-controller="Reservation">Növbəti</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
